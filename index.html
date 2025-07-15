@@ -790,34 +790,54 @@
 
             nav {
                 position: relative;
+                flex: 1;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
             }
 
             .mobile-menu-btn {
                 display: block;
-                position: absolute;
-                top: 0;
-                right: 0;
-                z-index: 1100;
+                background: none;
+                border: none;
+                color: var(--primary);
+                font-size: 2rem;
+                cursor: pointer;
+                position: static;
+                z-index: 1101;
+                margin-left: 10px;
             }
 
             nav ul {
                 display: none;
                 flex-direction: column;
-                width: 180px;
+                width: 200px;
                 background: var(--card-bg);
                 position: absolute;
-                top: 40px;
+                top: 45px;
                 right: 0;
-                padding: 15px 0;
+                padding: 15px 0 0 0;
                 border-radius: 10px;
                 border: 1px solid var(--border);
                 box-shadow: var(--shadow);
                 gap: 10px;
-                z-index: 1000;
+                z-index: 1100;
+                transition: all 0.2s;
             }
 
             nav ul.show {
                 display: flex;
+            }
+
+            .close-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--primary);
+                font-size: 2rem;
+                cursor: pointer;
+                align-self: flex-end;
+                margin: 0 15px 10px 0;
             }
         }
 
