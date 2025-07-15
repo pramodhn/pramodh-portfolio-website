@@ -776,29 +776,48 @@
         }
 
         @media (max-width: 768px) {
-            .timeline {
-                padding-left: 20px;
+            .container.header-container {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0;
+                padding: 0 10px;
             }
 
-            .timeline::before {
-                left: 10px;
+            .logo {
+                margin-bottom: 0;
             }
 
-            .timeline-item {
-                flex-direction: column !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-                align-items: flex-start !important;
+            nav {
+                position: relative;
             }
 
-            .timeline-content {
-                width: 100% !important;
-                margin-left: 30px;
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 1100;
             }
 
-            .timeline-content::before,
-            .timeline-content::after {
+            nav ul {
                 display: none;
+                flex-direction: column;
+                width: 180px;
+                background: var(--card-bg);
+                position: absolute;
+                top: 40px;
+                right: 0;
+                padding: 15px 0;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+                box-shadow: var(--shadow);
+                gap: 10px;
+                z-index: 1000;
+            }
+
+            nav ul.show {
+                display: flex;
             }
         }
 
@@ -837,48 +856,6 @@
 
             .typed-role {
                 font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container.header-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 0 10px;
-            }
-
-            .logo {
-                margin-bottom: 10px;
-            }
-
-            nav {
-                width: 100%;
-                position: relative;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background: var(--card-bg);
-                position: absolute;
-                top: 60px;
-                right: 0;
-                padding: 15px 0;
-                border-radius: 10px;
-                border: 1px solid var(--border);
-                box-shadow: var(--shadow);
-                gap: 10px;
-                z-index: 1000;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav ul.show {
-                display: flex;
             }
         }
     </style>
