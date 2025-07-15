@@ -854,10 +854,31 @@
 
             nav {
                 width: 100%;
+                position: relative;
             }
 
             nav ul {
+                display: none;
+                flex-direction: column;
                 width: 100%;
+                background: var(--card-bg);
+                position: absolute;
+                top: 60px;
+                right: 0;
+                padding: 15px 0;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+                box-shadow: var(--shadow);
+                gap: 10px;
+                z-index: 1000;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul.show {
+                display: flex;
             }
         }
     </style>
