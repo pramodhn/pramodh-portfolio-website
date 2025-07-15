@@ -210,21 +210,29 @@
                 padding: 16px 0;
             }
             .header-container {
+                display: flex;
+                flex-direction: row;
                 align-items: center;
-                position: relative;
+                justify-content: space-between;
+                padding: 0 10px;
             }
             .logo {
-                margin-left: 10px;
+                margin-left: 0;
+                margin-right: 0;
+                font-size: 1.8rem;
+                line-height: 1;
                 z-index: 10002;
             }
             nav {
                 position: relative;
-                z-index: 10001;
+                display: flex;
+                align-items: center;
             }
             .mobile-menu-btn {
-                position: absolute;
+                position: relative;
                 top: 0;
-                right: 20px;
+                right: 0;
+                margin-left: 10px;
                 font-size: 2rem;
                 color: var(--primary);
                 background: none;
@@ -232,7 +240,6 @@
                 cursor: pointer;
                 z-index: 10003;
                 display: block !important;
-                margin-top: 0;
             }
             #nav-menu {
                 position: fixed;
@@ -245,7 +252,7 @@
                 box-shadow: 0 0 30px rgba(0,0,0,0.5);
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 0 0 0 0;
+                padding-top: 0;
                 z-index: 9999;
                 display: none;
                 border-radius: 0 0 0 20px;
@@ -275,6 +282,10 @@
                 cursor: pointer;
                 z-index: 10001;
                 display: block !important;
+            }
+            /* Hide hamburger when menu is open */
+            #nav-menu.show ~ .mobile-menu-btn {
+                display: none !important;
             }
         }
 
