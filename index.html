@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pramodh N - Java Backend Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <style>
         * {
@@ -58,10 +55,7 @@
         }
 
         /* Typography */
-        h1,
-        h2,
-        h3,
-        h4 {
+        h1, h2, h3, h4 {
             font-weight: 600;
             line-height: 1.2;
             margin-bottom: 1rem;
@@ -126,7 +120,7 @@
             padding: 100px 0;
         }
 
-        /* Header */
+        /* Header - Fixed alignment for mobile */
         header {
             position: fixed;
             top: 0;
@@ -152,6 +146,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
+            z-index: 1002; /* Ensure above mobile menu */
         }
 
         .logo::after {
@@ -202,76 +197,69 @@
         }
 
         .mobile-menu-btn {
-            display: none !important;
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1003;
+            padding: 8px;
+            transition: transform 0.3s ease;
         }
 
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobile menu styles - fixed alignment */
         @media (max-width: 768px) {
-            header {
-                padding: 16px 0;
-            }
             .header-container {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
                 padding: 0 16px;
                 height: 60px;
             }
+            
             .logo {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                display: flex;
+                align-items: center;
                 margin: 0;
-                line-height: 1;
-                z-index: 10002;
-                display: flex;
-                align-items: center;
             }
-            nav {
-                display: flex;
-                align-items: center;
-                position: relative;
-            }
+            
             .mobile-menu-btn {
-                position: relative;
-                top: 0;
-                right: 0;
-                font-size: 1.8rem;
-                color: var(--primary);
-                background: none;
-                border: none;
-                cursor: pointer;
-                z-index: 10003;
-                display: block !important;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 width: 40px;
                 height: 40px;
-                justify-content: center;
             }
+            
             #nav-menu {
                 position: fixed;
                 top: 0;
-                right: 0;
-                width: 60vw;
-                max-width: 220px;
+                right: -300px;
+                width: 75vw;
+                max-width: 280px;
                 height: 100vh;
                 background: var(--card-bg);
                 box-shadow: -5px 0 25px rgba(0, 0, 0, 0.8);
                 flex-direction: column;
                 align-items: flex-start;
                 padding-top: 80px;
-                z-index: 9999;
-                display: none;
+                z-index: 1001;
+                transition: right 0.4s ease;
                 border-radius: 0 0 0 20px;
-                transition: width 0.3s;
             }
+            
             #nav-menu.show {
-                display: flex;
+                right: 0;
             }
+            
             #nav-menu li {
                 margin: 15px 0 15px 30px;
                 width: 100%;
-                font-size: 1.2rem;
             }
+            
             #nav-menu a {
                 color: var(--text-light);
                 padding: 10px 0;
@@ -279,26 +267,42 @@
                 display: block;
                 font-size: 1.1rem;
             }
+            
             .close-menu-btn {
                 position: absolute;
                 top: 20px;
                 right: 20px;
-                font-size: 2rem;
+                font-size: 1.8rem;
                 background: none;
                 border: none;
                 color: var(--primary);
                 cursor: pointer;
-                z-index: 10001;
-                display: block !important;
-                width: 40px;
-                height: 40px;
+                z-index: 1004;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                width: 40px;
+                height: 40px;
+                padding: 0;
             }
-            /* Hide hamburger when menu is open */
-            #nav-menu.show ~ .mobile-menu-btn {
-                display: none !important;
+            
+            /* Overlay for menu */
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+            }
+            
+            .menu-overlay.show {
+                opacity: 1;
+                visibility: visible;
             }
         }
 
@@ -789,11 +793,9 @@
             0% {
                 transform: translateY(0px);
             }
-
             50% {
                 transform: translateY(-20px);
             }
-
             100% {
                 transform: translateY(0px);
             }
@@ -803,7 +805,6 @@
             0% {
                 text-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
             }
-
             100% {
                 text-shadow: 0 0 25px rgba(0, 100, 255, 0.5);
             }
@@ -813,11 +814,9 @@
             0% {
                 opacity: 1;
             }
-
             50% {
                 opacity: 0;
             }
-
             100% {
                 opacity: 1;
             }
@@ -869,31 +868,25 @@
 
         @media (max-width: 768px) {
             html, body {
-                width: 100vw;
-                max-width: 100vw;
-                overflow-x: hidden !important;
+                overflow-x: hidden;
                 position: relative;
-                touch-action: pan-y;
             }
             .container {
-                width: 100vw;
-                max-width: 100vw;
+                width: 100%;
+                max-width: 100%;
                 padding: 0 10px;
-                box-sizing: border-box;
             }
             .timeline-content,
             .project-card,
             .education-card {
-                max-width: 95vw;
-                width: 95vw !important;
-                box-sizing: border-box;
+                max-width: 95%;
+                width: 95% !important;
                 margin-left: auto;
                 margin-right: auto;
             }
         }
 
         @media (max-width: 576px) {
-
             .skill-card,
             .project-card {
                 padding: 20px;
@@ -929,102 +922,15 @@
                 font-size: 1.3rem;
             }
         }
-
-        @media (max-width: 768px) {
-            .timeline-content {
-                width: 90vw !important;
-                min-width: 0 !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-                box-sizing: border-box;
-                overflow-wrap: break-word;
-                word-break: break-word;
-                padding: 20px !important;
-            }
-
-            .timeline {
-                max-width: 100vw !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                position: relative;
-            }
-            #nav-menu {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 75vw;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--card-bg);
-                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.8);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0 0 0 0;
-                z-index: 9999;
-                display: none;
-                border-radius: 0 0 0 20px;
-            }
-            #nav-menu.show {
-                display: flex;
-            }
-            #nav-menu li {
-                margin: 15px 0 15px 30px;
-                width: 100%;
-                font-size: 1.2rem;
-            }
-            #nav-menu a {
-                color: var(--text-light);
-                padding: 10px 0;
-                width: 100%;
-                display: block;
-            }
-            .close-menu-btn {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                font-size: 2rem;
-                background: none;
-                border: none;
-                color: var(--primary);
-                cursor: pointer;
-                z-index: 10001;
-                display: block !important;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .mobile-menu-btn {
-                position: absolute;
-                top: 0;
-                right: 20px;
-                font-size: 1.8rem;
-                color: var(--primary);
-                background: none;
-                border: none;
-                cursor: pointer;
-                z-index: 10003;
-                display: block !important;
-                margin-top: 0;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 
 <body>
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
+    
+    <!-- Mobile menu overlay -->
+    <div class="menu-overlay" id="menu-overlay"></div>
 
     <!-- Header -->
     <header>
@@ -1038,9 +944,9 @@
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#education">Education</a></li>
-                    <button class="close-menu-btn" id="close-menu" style="display:none;" aria-label="Close menu">&times;</button>
+                    <button class="close-menu-btn" id="close-menu" aria-label="Close menu">&times;</button>
                 </ul>
-                <button class="mobile-menu-btn" id="menu-toggle">
+                <button class="mobile-menu-btn" id="menu-toggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
@@ -1344,19 +1250,24 @@
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
         const closeMenu = document.getElementById('close-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
 
         menuToggle.addEventListener('click', () => {
             navMenu.classList.add('show');
-            closeMenu.style.display = 'block';
-            menuToggle.style.display = 'none';
+            menuOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
         });
 
-        closeMenu.addEventListener('click', () => {
+        closeMenu.addEventListener('click', closeMobileMenu);
+        menuOverlay.addEventListener('click', closeMobileMenu);
+
+        function closeMobileMenu() {
             navMenu.classList.remove('show');
-            closeMenu.style.display = 'none';
-            menuToggle.style.display = 'block';
-        });
+            menuOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
 
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1366,9 +1277,7 @@
                         top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    navMenu.classList.remove('show');
-                    closeMenu.style.display = 'none';
-                    menuToggle.style.display = 'block';
+                    closeMobileMenu();
                 }
             });
         });
@@ -1419,16 +1328,8 @@
 
         document.getElementById('logo').addEventListener('click', function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            closeMobileMenu();
         });
-
-        // Add glow effect to logo
-        const logo = document.getElementById('logo');
-        logo.style.animation = 'textGlow 2s infinite alternate';
-
-        // Add blink effect to typed cursor
-        const typedCursor = document.querySelector('.typed-cursor');
-        typedCursor.style.animation = 'blink 1s infinite';
     </script>
 </body>
-
 </html>
