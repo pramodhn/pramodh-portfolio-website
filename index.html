@@ -698,48 +698,6 @@
             transform: translateY(-3px);
         }
 
-        /* Education */
-        .education-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 40px;
-            border: 1px solid var(--border);
-            text-align: center;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .education-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .education-card:hover::before {
-            opacity: 1;
-        }
-
-        .institution {
-            color: var(--text-light);
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .degree {
-            color: var(--text);
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-
         /* Footer */
         footer {
             padding: 80px 0 40px;
@@ -877,8 +835,7 @@
                 padding: 0 10px;
             }
             .timeline-content,
-            .project-card,
-            .education-card {
+            .project-card {
                 max-width: 95%;
                 width: 95% !important;
                 margin-left: auto;
@@ -943,7 +900,6 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#education">Education</a></li>
                     <button class="close-menu-btn" id="close-menu" aria-label="Close menu">&times;</button>
                 </ul>
                 <button class="mobile-menu-btn" id="menu-toggle" aria-label="Toggle menu">
@@ -1074,6 +1030,7 @@
                         <li>Base24</li>
                         <li>MPGS, CyberSource</li>
                         <li>BEPG (Rupay)</li>
+                        <li>Wallets (Google Pay, Apple Pay, Samsung Pay)</li>
                     </ul>
                 </div>
             </div>
@@ -1192,24 +1149,6 @@
                             <span class="tech-item">SQL</span>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education">
-        <div class="container">
-            <div class="section-title">
-                <h2>Education</h2>
-            </div>
-            <div class="education-card">
-                <h3>Bachelor of Mechanical Engineering</h3>
-                <div class="institution">The Oxford College of Engineering</div>
-                <div class="degree">Bangalore</div>
-                <div class="contact-item" style="margin: 20px auto 0; width: fit-content;">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Completed</span>
                 </div>
             </div>
         </div>
